@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.25.5/dist/css/uikit.min.css" />
+    <!-- UIkit JS -->
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.25.5/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.25.5/dist/js/uikit-icons.min.js"></script>
+
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+
+    <!-- Basic Icons -->
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
+    <!-- Filled Icons -->
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
+    <!-- Brand Icons -->
+    <link href="https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css" rel="stylesheet">
+
+    <link rel="icon" type="image/x-icon" href="https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Apsychology_alt%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4024">
+    <meta name="keywords" content="Tool Hub, Report Tools">
+    <meta name="author" content="Thanushkar S, Thanu">
+    <title>Digital Study Desk</title>
+
+    <style>
+        /* Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        *{
+            margin: 0;
+            padding: 0;
+            outline: none;
+            appearance: none;
+            border: none;
+            text-decoration: none;
+            list-style: none;
+            box-sizing: border-box;
+        }
+        html,
+        body {
+            user-select: none;
+            position: relative;
+            background: #eeeded;
+            font-family: "poppins";
+            width: 100%;
+            padding: 1rem 1.2rem;
+            color: #333333;
+        }
+
+        marquee{
+            background-color: red;
+            padding: .2rem;
+            background-color: #1F3A93;
+            color: #ffffff;
+            margin-bottom: -.5rem;
+        }
+        marquee span{
+            font-weight: 800;
+            padding-right: .5rem;
+        }
+
+        main{
+            width: 100%;
+            display: flex;
+        }
+        main .uk-h1{
+            padding: 1rem 0;
+        }
+        main .uk-button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 5rem;
+            height: 5rem;
+            background-image: url("Profile.jpg");
+            background-size: 100%;
+        }
+        main .uk-button{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 5rem;
+            height: 5rem;
+            
+        }
+        .uk-offcanvas-bar{
+            background-color: #333333ee;
+        }
+        .uk-offcanvas-bar .contain{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contain h2{
+            font-weight: 800;
+        }
+        .contain h3{
+            font-weight: 800;
+
+        }
+
+        .swiper {
+            width: 100%;
+            padding-bottom: 35px;
+        }
+
+        .swiper .swiper-slide {
+            width: 20rem;
+            height: 8rem;
+            border-radius: 10px;
+            background: #1F3A93;
+        }
+        .swiper-slide a{
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            font-size: 1.2rem;
+        }
+        .swiper-slide a:hover{      
+            appearance: none;
+        }
+        .swiper .swiper-pagination{
+            text-align: center;
+            margin-top: .5rem;
+        }
+    </style>
+
+</head>
+<body>
+    <main>
+        <h1 class="uk-h1 uk-width-expand@m">DIGITAL STUDY DESK</h1>
+        <button class="uk-button uk-button-default uk-width-auto@m" type="button" style="border-radius: 50%;" uk-toggle="target: #offcanvas-flip"></button>
+    </main>
+
+    <div id="offcanvas-flip" uk-offcanvas="flip: true; overlay: true">
+        <div class="uk-offcanvas-bar">
+            <button class="uk-offcanvas-close" type="button" uk-close></button>
+            <div class="contain">
+                <h2>Contect Me 😁</h2>
+                <img class="uk-border-pill" src="Profile.jpg" width="200" height="200" alt="Border pill">
+                <h3 class="uk-h3">Sivakumar Thanushkar</h3>
+                <div class="click">
+                    <a href="mailto:mrkthanuts@gmail.com"><span uk-icon="icon: google; ratio: 2"></span></a>
+                    <a href="https://github.com/ThanushkarSiva1238"><span uk-icon="icon: github; ratio: 2"></span></a>
+                    <a href="https://www.linkedin.com/in/thanushkarsivakumar/"><span uk-icon="icon: linkedin; ratio: 2"></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <marquee>
+        <span>NOTE : </span>
+        We Respect Education, Not Shortcuts &nbsp;&nbsp;|&nbsp;&nbsp; Check University Policies &nbsp;&nbsp;|&nbsp;&nbsp; Use Tools Responsibly &nbsp;&nbsp;|&nbsp;&nbsp; Learning > Shortcuts
+    </marquee>
+
+    <ul class="uk-accordion-default" uk-accordion>
+        <li>
+            <a class="uk-accordion-title" href> Generative AI Tools <span uk-accordion-icon></a>
+            <div class="uk-accordion-content">
+                <!-- Swiper -->
+                <div class="swiper mySwiper1">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="https://chatgpt.com/" target="_blank" class="uk-card"> ChatGPT </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://gemini.google.com/app" target="_blank" class="uk-card"> Gemini </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://grok.com/" target="_blank" class="uk-card"> Grok </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.perplexity.ai/" target="_blank" class="uk-card"> Perplexity </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.blackbox.ai/" target="_blank" class="uk-card"> BlackBox </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://dashboard.cohere.com/playground/chat" target="_blank" class="uk-card"> Cohera </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://chatlyai.app/" target="_blank" class="uk-card"> Chatly </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.notion.so/ai" target="_blank" class="uk-card"> Notion AI </a>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination tool1"></div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a class="uk-accordion-title" href> Online Dictionaries <span uk-accordion-icon></a>
+            <div class="uk-accordion-content">
+                <!-- Swiper -->
+                <div class="swiper mySwiper2">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="https://dictionary.cambridge.org/" target="_blank" class="uk-card">Cambridge</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.merriam-webster.com/" target="_blank" class="uk-card">Merriam-Webster</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.oxfordlearnersdictionaries.com/" target="_blank" class="uk-card">Oxford</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://agarathi.com/" target="_blank">Agarathi</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.tamildict.com/english.php" target="_blank" class="uk-card">TamilDict.com</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.maduraonline.com/" target="_blank" class="uk-card">Madura</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://glosbe.com/" target="_blank" class="uk-card">Glosbe</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.kapruka.com/dictionary/EnglishToSinhala.jsp" target="_blank" class="uk-card">Kapruka</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.collinsdictionary.com/" target="_blank" class="uk-card">Collins French</a>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination tool2"></div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a class="uk-accordion-title" href> Article & Magazine Tools <span uk-accordion-icon></a>
+            <div class="uk-accordion-content">
+                <!-- Swiper -->
+                <div class="swiper mySwiper3">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="https://www.britannica.com/" target="_blank" class="uk-card">Encyclopædia Britannica</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.mendeley.com/" target="_blank" class="uk-card">Mendeley</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://scholar.google.com/" target="_blank" class="uk-card">Google Scholor</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://elicit.com/" target="_blank" class="uk-card">Elicit</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://jenni.ai/?cmc_adid=ga_784716635253_23280535346&utm_group=188822413093&gad_campaignid=23280535346" target="_blank" class="uk-card">Jenni AI</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.techopedia.com/" target="_blank" class="uk-card">Techopedia</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.techlearning.com/" target="_blank" class="uk-card">Tech & Learning</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.techtarget.com/searchnetworking/" target="_blank" class="uk-card">TechTarget</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://blog.cloudflare.com/search" target="_blank" class="uk-card">Cloudflare</a>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination tool3"></div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a class="uk-accordion-title" href> Paraphrase Tools <span uk-accordion-icon></a>
+            <div class="uk-accordion-content">
+                <!-- Swiper -->
+                <div class="swiper mySwiper4">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="https://stealthwriter.ai/" target="_blank" class="uk-card">Stealth Writer</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://quillbot.com/" target="_blank" class="uk-card">Quill Bot</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.paraphraser.io/" target="_blank" class="uk-card">Paraphraser</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.grammarly.com/paraphrasing-tool" target="_blank" class="uk-card">Grammerly</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://ahrefs.com/writing-tools/paraphrasing-tool" target="_blank" class="uk-card">Ahref Paraphrase</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.scribbr.com/paraphrasing-tool/" target="_blank" class="uk-card">Scribbr</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://spinbot.com/paraphrasing-tool" target="_blank" class="uk-card">Spin Bot</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.humanizeai.pro/" target="_blank" class="uk-card">Humanize AI</a>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination tool4"></div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a class="uk-accordion-title" href> Editor Tools <span uk-accordion-icon></a>
+            <div class="uk-accordion-content">
+                <!-- Swiper -->
+                <div class="swiper mySwiper5">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="https://www.canva.com/" target="_blank" class="uk-card">Canva</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://dashboard.prowritingaid.com/" target="_blank" class="uk-card">ProWritingAid</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://docs.google.com/document/u/0/" target="_blank" class="uk-card">Google Docs</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://lucid.app/documents#/home?folder_id=recent" target="_blank" class="uk-card">Lucid</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://app.diagrams.net/" target="_blank" class="uk-card">Draw.io</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.mindmeister.com/app/home" target="_blank" class="uk-card">Mind Meister</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.ilovepdf.com/" target="_blank" class="uk-card">I-Love-PDF</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.sejda.com/" target="_blank" class="uk-card">Sejda</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://pdf.ai/documents" target="_blank" class="uk-card">PDF AI</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://app.humata.ai/" target="_blank" class="uk-card">Humata AI</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://gamma.com.ai/ai-powerpoint" target="_blank" class="uk-card">Gamma AI</a>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination tool5"></div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a class="uk-accordion-title" href> Plagiarism Checker <span uk-accordion-icon></a>
+            <div class="uk-accordion-content">
+                <!-- Swiper -->
+                <div class="swiper mySwiper6">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="https://www.zerogpt.com/" target="_blank" class="uk-card">ZeroGPT</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://gptzero.me/plagiarism-checker" target="_blank" class="uk-card">GPT Zero</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.copyscape.com/" target="_blank" class="uk-card">Copyscape</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://chatgpt.com/g/g-ifP7V7mmC-plagiarism-checker" target="_blank" class="uk-card">ChatGPT PC</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://papersowl.com/free-plagiarism-checker" target="_blank" class="uk-card">PapersOwl</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://app.scribbr.com/plagiarism-checker" target="_blank" class="uk-card">Scribbr PC</a>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination tool6"></div>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a class="uk-accordion-title" href> Script Convertor Tools <span uk-accordion-icon></a>
+            <div class="uk-accordion-content">
+                <!-- Swiper -->
+                <div class="swiper mySwiper7">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="https://translate.google.lk/?hl=en&vi=c&sl=en&tl=ta&op=translate" target="_blank" class="uk-card">Google Translator</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://sinhalaunicode.gishan.net/write" target="_blank" class="uk-card">Sinhala Unicode</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://www.easytamiltyping.com/" target="_blank" class="uk-card">Easy Tamil Typing</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://ucsc.cmb.ac.lk/ltrl/services/feconverter/" target="_blank" class="uk-card">Unicode - Tamil Convertor</a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://trackerdisk.com/calculators/conversions/numbers-to-sinhala-words" target="_blank" class="uk-card">TrackerDisk</a>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination tool7"></div>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+</body>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+
+<!-- Import JS -->
+ <script src="index.js"></script>
+</script>
+</html>
