@@ -1,729 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Study Desk</title>
+<meta name="keywords" content="Tool Hub, Report Tools, Study Tools, AI Tools">
+<meta name="author" content="Thanushkar S, Thanu">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230a84ff'/%3E%3Ctext x='50' y='68' font-size='56' text-anchor='middle'%3E%F0%9F%8E%93%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --acc:#0a84ff; --txt:#1d1d1f; --sub:#6e6e73; --line:rgba(0,0,0,.09); --hover:rgba(0,0,0,.055);
+  --win:rgba(255,255,255,.74); --side:rgba(240,241,246,.62); --bar:rgba(255,255,255,.7);
+  --wall:radial-gradient(60% 50% at 15% 10%,#ffb8d9 0,transparent 70%),radial-gradient(55% 55% at 90% 15%,#9ec5ff 0,transparent 70%),radial-gradient(60% 60% at 80% 95%,#c3a1ff 0,transparent 70%),radial-gradient(55% 55% at 10% 95%,#8fe6ff 0,transparent 70%),#e9edf6;
+}
+[data-theme=dark]{
+  --txt:#f5f5f7; --sub:#a1a1a6; --line:rgba(255,255,255,.11); --hover:rgba(255,255,255,.09);
+  --win:rgba(34,34,38,.76); --side:rgba(24,24,28,.6); --bar:rgba(20,20,24,.6);
+  --wall:radial-gradient(60% 50% at 15% 10%,#5b2a6e 0,transparent 70%),radial-gradient(55% 55% at 90% 15%,#1d3f8f 0,transparent 70%),radial-gradient(60% 60% at 80% 95%,#3b2a8f 0,transparent 70%),radial-gradient(55% 55% at 10% 95%,#0f5c6b 0,transparent 70%),#0c0d14;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden}
+body{font:14px/1.4 -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,sans-serif;color:var(--txt);background:var(--wall) fixed;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px;border-radius:8px}
+.glass{backdrop-filter:blur(28px) saturate(180%);-webkit-backdrop-filter:blur(28px) saturate(180%)}
 
-    <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.25.5/dist/css/uikit.min.css" />
-    <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.25.5/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.25.5/dist/js/uikit-icons.min.js"></script>
+/* menu bar */
+.menubar{position:fixed;inset:0 0 auto 0;height:30px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;background:var(--bar);border-bottom:1px solid var(--line);font-size:13px;z-index:50}
+.menubar b{font-weight:600}.menubar div{display:flex;align-items:center;gap:16px}
+.menubar button{font-size:15px;opacity:.8}.menubar button:hover{opacity:1}
 
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
+/* window */
+.win{position:fixed;top:46px;bottom:100px;left:50%;transform:translateX(-50%);width:min(1080px,calc(100% - 32px));display:grid;grid-template-columns:220px 1fr;background:var(--win);border:1px solid var(--line);border-radius:14px;box-shadow:0 30px 70px rgba(0,0,0,.22),0 0 0 .5px rgba(0,0,0,.12);overflow:hidden}
+.side{background:var(--side);border-right:1px solid var(--line);padding:14px 10px;overflow-y:auto;display:flex;flex-direction:column;gap:2px}
+.lights{display:flex;gap:8px;padding:0 8px 14px}.lights i{width:12px;height:12px;border-radius:50%}
+.lights i:nth-child(1){background:#ff5f57}.lights i:nth-child(2){background:#febc2e}.lights i:nth-child(3){background:#28c840}
+.side h6{font-size:11px;font-weight:600;color:var(--sub);padding:12px 10px 4px}
+.si{display:flex;align-items:center;gap:9px;padding:6px 10px;border-radius:8px;text-align:left;width:100%}
+.si:hover{background:var(--hover)}
+.si.on{background:var(--acc);color:#fff}
+.si .mini{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-size:13px;background:linear-gradient(145deg,var(--a),var(--b));flex:none}
+.si .n{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.si .c{font-size:12px;opacity:.6}
 
-    <!-- Basic Icons -->
-    <link href="https://cdn.boxicons.com/3.0.8/fonts/basic/boxicons.min.css" rel="stylesheet">
-    <!-- Filled Icons -->
-    <link href="https://cdn.boxicons.com/3.0.8/fonts/filled/boxicons-filled.min.css" rel="stylesheet">
-    <!-- Brand Icons -->
-    <link href="https://cdn.boxicons.com/3.0.8/fonts/brands/boxicons-brands.min.css" rel="stylesheet">
+.main{display:flex;flex-direction:column;min-width:0;min-height:0}
+.tool{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--line)}
+.tool h2{font-size:16px;font-weight:600;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seg{display:flex;background:var(--hover);border-radius:8px;padding:2px}
+.seg button{padding:3px 10px;border-radius:6px;font-size:15px;line-height:1.3}
+.seg button.on{background:var(--win);box-shadow:0 1px 3px rgba(0,0,0,.18)}
+.search{position:relative;width:min(240px,42%)}
+.search input{width:100%;padding:6px 40px 6px 30px;border-radius:8px;border:1px solid var(--line);background:var(--hover);color:var(--txt);font:inherit;outline:0}
+.search input:focus{border-color:var(--acc);box-shadow:0 0 0 3px rgba(10,132,255,.25)}
+.search::before{content:"🔍";position:absolute;left:9px;top:50%;transform:translateY(-50%);font-size:12px;opacity:.6}
+.search kbd{position:absolute;right:8px;top:50%;transform:translateY(-50%);font:11px inherit;color:var(--sub);pointer-events:none}
+.scroll{flex:1;overflow-y:auto;padding:18px 20px 24px}
+.hello{margin-bottom:6px}.hello h1{font-size:26px;font-weight:700;letter-spacing:-.02em}
+.hello p{color:var(--sub);margin-top:2px}
+.sec{margin-top:22px}.sec h3{font-size:13px;font-weight:600;color:var(--sub);display:flex;align-items:center;gap:6px;margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:6px}
+.app{position:relative}
+.app a{display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 6px 8px;border-radius:12px;text-align:center}
+.app a:hover,.app a:focus-visible{background:var(--hover)}
+.tile{width:62px;height:62px;border-radius:15px;display:grid;place-items:center;font-size:32px;background:linear-gradient(145deg,var(--a),var(--b));box-shadow:0 6px 14px rgba(0,0,0,.2),inset 0 1px 0 rgba(255,255,255,.45);transition:transform .15s}
+.app a:hover .tile{transform:translateY(-3px) scale(1.06)}
+.nm{font-size:12.5px;font-weight:500;line-height:1.25}.nm small{display:none;color:var(--sub);font-weight:400;font-size:12px}
+.star{position:absolute;top:6px;right:6px;width:24px;height:24px;border-radius:50%;font-size:14px;color:var(--sub);opacity:0;transition:.15s}
+.app:hover .star,.star:focus-visible,.star.on{opacity:1}.star.on{color:#ffb020}
+.star:hover{background:var(--hover)}
+.grid.list{grid-template-columns:1fr;gap:0}
+.list .app a{flex-direction:row;gap:12px;padding:7px 10px;text-align:left}
+.list .tile{width:36px;height:36px;font-size:19px;border-radius:9px}
+.list .nm small{display:block}.list .star{top:12px;right:12px}
+.empty{text-align:center;color:var(--sub);padding:60px 20px}.empty div{font-size:44px;margin-bottom:8px}
 
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230B1220'/%3E%3Cpath d='M22 30 h56 M22 50 h56 M22 70 h34' stroke='%23F2A94E' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
-    <meta name="keywords" content="Tool Hub, Report Tools, Study Tools, AI Tools">
-    <meta name="author" content="Thanushkar S, Thanu">
-    <title>Digital Study Desk</title>
+/* dock */
+.dock{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);display:flex;align-items:flex-end;gap:8px;padding:8px 10px;background:var(--bar);border:1px solid var(--line);border-radius:22px;box-shadow:0 12px 32px rgba(0,0,0,.2);z-index:40}
+.di{position:relative;width:50px;height:50px;border-radius:12px;display:grid;place-items:center;font-size:26px;background:linear-gradient(145deg,var(--a),var(--b));box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 3px 8px rgba(0,0,0,.2);transform-origin:bottom;transition:transform .12s ease-out}
+.di.on::before{content:"";position:absolute;bottom:-6px;width:4px;height:4px;border-radius:50%;background:var(--txt);opacity:.7}
+.di::after{content:attr(data-tip);position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);background:var(--win);border:1px solid var(--line);padding:3px 9px;border-radius:6px;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .12s;color:var(--txt);font-size:12px}
+.di:hover::after,.di:focus-visible::after{opacity:1}
+.dsep{width:1px;height:38px;background:var(--line);align-self:center}
 
-    <style>
-        /* Fonts */
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap');
+/* toast + about */
+.toast{position:fixed;top:40px;right:14px;width:310px;padding:12px 14px;display:flex;gap:11px;background:var(--win);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 30px rgba(0,0,0,.2);z-index:60;transform:translateX(120%);transition:transform .45s cubic-bezier(.2,.9,.3,1)}
+.toast.show{transform:none}.toast .ic{font-size:26px}.toast p{font-size:12.5px;color:var(--sub);margin-top:2px}.toast b{font-size:13px}
+.toast button{align-self:flex-start;margin-left:auto;color:var(--sub);font-size:16px}
+dialog{margin:auto;width:320px;border:1px solid var(--line);border-radius:16px;background:var(--win);color:var(--txt);padding:26px 22px 20px;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog::backdrop{background:rgba(0,0,0,.28);backdrop-filter:blur(3px)}
+.av,.ph{width:96px;height:96px;border-radius:50%;object-fit:cover;margin:0 auto 10px;display:grid;place-items:center;font-size:32px;font-weight:600;color:#fff;background:linear-gradient(145deg,#4fa8ff,#5a4fe0)}
+dialog h3{font-size:18px}dialog .role{color:var(--sub);font-size:13px;margin-bottom:16px}
+.links{border:1px solid var(--line);border-radius:12px;overflow:hidden;text-align:left}
+.links a{display:flex;gap:10px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line)}.links a:last-child{border:0}.links a:hover{background:var(--hover)}
+.close{margin-top:14px;padding:6px 22px;border-radius:8px;background:var(--acc);color:#fff;font-weight:500}
 
-        :root{
-            --ink: #0B1220;
-            --panel: #121C30;
-            --panel-soft: #17233B;
-            --line: #26334D;
-            --text: #E7E6E1;
-            --text-dim: #94A1B8;
-            --amber: #F2A94E;
-            --amber-dim: rgba(242,169,78,.18);
-            --teal: #5FD9C7;
-            --radius: 14px;
-        }
-
-        *{
-            margin: 0;
-            padding: 0;
-            outline: none;
-            appearance: none;
-            border: none;
-            text-decoration: none;
-            list-style: none;
-            box-sizing: border-box;
-        }
-
-        html, body{
-            position: relative;
-            background:
-                radial-gradient(1100px 480px at 12% -8%, rgba(242,169,78,.08), transparent 60%),
-                radial-gradient(900px 420px at 100% 0%, rgba(95,217,199,.06), transparent 55%),
-                var(--ink);
-            background-attachment: fixed;
-            font-family: "Inter", sans-serif;
-            width: 100%;
-            color: var(--text);
-            padding-bottom: 3rem;
-        }
-
-        a:focus-visible, button:focus-visible{
-            outline: 2px solid var(--amber);
-            outline-offset: 2px;
-            border-radius: 4px;
-        }
-
-        ::selection{ background: var(--amber-dim); color: var(--text); }
-
-        /* ---------- Topbar ---------- */
-        .topbar{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 1.4rem 1.4rem 1rem;
-            max-width: 1080px;
-            margin: 0 auto;
-        }
-        .brand{
-            display: flex;
-            align-items: center;
-            gap: .9rem;
-        }
-        .brand-mark{
-            font-family: "JetBrains Mono", monospace;
-            font-weight: 600;
-            font-size: .78rem;
-            letter-spacing: .06em;
-            color: var(--ink);
-            background: var(--amber);
-            padding: .45rem .55rem;
-            border-radius: 8px;
-            line-height: 1;
-        }
-        .brand-text h1{
-            font-family: "Sora", sans-serif;
-            font-weight: 700;
-            font-size: clamp(1.35rem, 2.4vw, 1.75rem);
-            line-height: 1.15;
-        }
-        .brand-text p{
-            font-family: "JetBrains Mono", monospace;
-            font-size: .74rem;
-            color: var(--text-dim);
-            margin-top: .25rem;
-        }
-
-        .avatar-btn{
-            width: 3.1rem;
-            height: 3.1rem;
-            border-radius: 50%;
-            background-image: url("Profile.jpg");
-            background-size: cover;
-            background-position: center;
-            flex-shrink: 0;
-            cursor: pointer;
-            box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--amber);
-            transition: box-shadow .2s ease, transform .2s ease;
-        }
-        .avatar-btn:hover{
-            transform: translateY(-1px);
-            box-shadow: 0 0 0 2px var(--panel), 0 0 0 4px var(--teal);
-        }
-
-        /* ---------- Offcanvas / contact ---------- */
-        .uk-offcanvas-bar{
-            background-color: #0D1424f2;
-            backdrop-filter: blur(6px);
-            border-left: 1px solid var(--line);
-        }
-        .uk-offcanvas-close{
-            color: var(--text-dim);
-        }
-        .contain{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding-top: 2rem;
-        }
-        .contain .eyebrow{
-            font-family: "JetBrains Mono", monospace;
-            font-size: .72rem;
-            color: var(--amber);
-            margin-bottom: 1.2rem;
-        }
-        .contain img{
-            box-shadow: 0 0 0 3px var(--ink), 0 0 0 5px var(--amber);
-        }
-        .contain h3{
-            font-family: "Sora", sans-serif;
-            font-weight: 700;
-            margin-top: 1.1rem;
-            font-size: 1.15rem;
-        }
-        .contain .role{
-            font-size: .82rem;
-            color: var(--text-dim);
-            margin-top: .3rem;
-        }
-        .click{
-            display: flex;
-            gap: .7rem;
-            margin-top: 1.6rem;
-        }
-        .click a{
-            width: 2.7rem;
-            height: 2.7rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: var(--panel-soft);
-            border: 1px solid var(--line);
-            color: var(--text);
-            font-size: 1.1rem;
-            transition: border-color .2s ease, color .2s ease, transform .2s ease;
-        }
-        .click a:hover{
-            border-color: var(--amber);
-            color: var(--amber);
-            transform: translateY(-2px);
-        }
-
-        /* ---------- Ticker ---------- */
-        .ticker{
-            border-top: 1px solid var(--amber);
-            border-bottom: 1px solid var(--amber);
-            background: var(--panel);
-            padding: .5rem 0;
-            margin: .6rem 0 1.6rem;
-        }
-        marquee{
-            font-family: "JetBrains Mono", monospace;
-            font-size: .78rem;
-            color: var(--text-dim);
-        }
-        marquee span{
-            font-weight: 600;
-            color: var(--amber);
-            padding-right: .5rem;
-        }
-
-        /* ---------- Stats strip ---------- */
-        .stats{
-            max-width: 1080px;
-            margin: 0 auto 1.6rem;
-            padding: 0 1.4rem;
-            display: flex;
-            gap: 1.6rem;
-            flex-wrap: wrap;
-            font-family: "JetBrains Mono", monospace;
-            font-size: .78rem;
-            color: var(--text-dim);
-        }
-        .stats b{
-            color: var(--teal);
-            font-size: .95rem;
-        }
-
-        /* ---------- Accordion / drawers ---------- */
-        .uk-accordion-default{
-            max-width: 1080px;
-            margin: 0 auto;
-            padding: 0 1.4rem;
-            display: flex;
-            flex-direction: column;
-            gap: .7rem;
-        }
-        .uk-accordion-default > li{
-            background: var(--panel);
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            overflow: hidden;
-            transition: border-color .2s ease;
-        }
-        .uk-accordion-default > li.uk-open{
-            border-color: var(--amber);
-        }
-        .uk-accordion-title{
-            display: flex;
-            align-items: center;
-            gap: .9rem;
-            padding: 1rem 1.1rem;
-            cursor: pointer;
-            color: var(--text);
-        }
-        .cat-icon{
-            width: 2.5rem;
-            height: 2.5rem;
-            border-radius: 9px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--amber-dim);
-            color: var(--amber);
-            font-size: 1.2rem;
-            flex-shrink: 0;
-        }
-        .cat-text{
-            display: flex;
-            flex-direction: column;
-            flex: 1;
-        }
-        .cat-text .cat-name{
-            font-family: "Sora", sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-        }
-        .cat-text .cat-count{
-            font-family: "JetBrains Mono", monospace;
-            font-size: .72rem;
-            color: var(--text-dim);
-            margin-top: .15rem;
-        }
-        .uk-accordion-icon{
-            color: var(--text-dim);
-        }
-        .uk-accordion-content{
-            padding: 0 1.1rem 1.2rem;
-            margin: 0 !important;
-        }
-
-        /* ---------- Swiper cards ---------- */
-        .swiper{
-            width: 100%;
-            padding: .2rem .2rem 2.4rem;
-        }
-        .swiper-slide{
-            width: 15rem;
-            height: 5.5rem;
-            border-radius: 11px;
-            background: var(--panel-soft);
-            border: 1px solid var(--line);
-            border-left: 3px solid var(--teal);
-            transition: transform .18s ease, border-color .18s ease, background .18s ease;
-        }
-        .swiper-slide:hover{
-            transform: translateY(-3px);
-            border-color: var(--amber);
-            background: #1C2A45;
-        }
-        .swiper-slide a{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            gap: .6rem;
-            padding: 0 1rem;
-            color: var(--text);
-            font-family: "Sora", sans-serif;
-            font-weight: 600;
-            font-size: .92rem;
-        }
-        .swiper-slide a i{
-            color: var(--teal);
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-        .swiper-pagination{
-            text-align: center;
-        }
-        .swiper-pagination-bullet{
-            background: var(--line);
-            opacity: 1;
-        }
-        .swiper-pagination-bullet-active{
-            background: var(--amber);
-        }
-        .swiper-button-next, .swiper-button-prev{
-            color: var(--amber);
-            top: 40%;
-        }
-        .swiper-button-next::after, .swiper-button-prev::after{
-            font-size: 1.1rem;
-        }
-        @media (max-width: 640px){
-            .swiper-button-next, .swiper-button-prev{ display: none; }
-        }
-
-        /* ---------- Footer ---------- */
-        .site-footer{
-            max-width: 1080px;
-            margin: 2.2rem auto 0;
-            padding: 1.2rem 1.4rem 0;
-            border-top: 1px solid var(--line);
-            font-family: "JetBrains Mono", monospace;
-            font-size: .72rem;
-            color: var(--text-dim);
-            text-align: center;
-        }
-        .site-footer span{ color: var(--amber); }
-    </style>
-
+@media(max-width:760px){
+  .win{grid-template-columns:1fr;grid-template-rows:auto 1fr;bottom:12px;top:40px;width:calc(100% - 16px)}
+  .side{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line);padding:8px;gap:4px}
+  .side h6,.lights,.si .c{display:none}.si{width:auto;flex:none;padding:6px 10px}
+  .dock,.tool h2{display:none}.search{width:100%}.toast{width:calc(100% - 20px)}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
 </head>
 <body>
-    <header class="topbar">
-        <div class="brand">
-            <span class="brand-mark">DSD</span>
-            <div class="brand-text">
-                <h1>Digital Study Desk</h1>
-                <p>curated console // AI, research &amp; writing tools</p>
-            </div>
-        </div>
-        <button class="avatar-btn" type="button" uk-toggle="target: #offcanvas-flip" aria-label="Open contact panel"></button>
-    </header>
 
-    <div id="offcanvas-flip" uk-offcanvas="flip: true; overlay: true">
-        <div class="uk-offcanvas-bar">
-            <button class="uk-offcanvas-close" type="button" uk-close></button>
-            <div class="contain">
-                <span class="eyebrow">Get in touch</span>
-                <img class="uk-border-pill" src="Profile.jpg" width="120" height="120" alt="Profile photo">
-                <h3>Sivakumar Thanushkar</h3>
-                <p class="role">Builder of this desk</p>
-                <div class="click">
-                    <a href="mailto:mrkthanuts@gmail.com" aria-label="Email"><i class="bx bxl-google"></i></a>
-                    <a href="https://github.com/ThanushkarSiva1238" target="_blank" aria-label="GitHub"><i class="bx bxl-github"></i></a>
-                    <a href="https://www.linkedin.com/in/thanushkarsivakumar/" target="_blank" aria-label="LinkedIn"><i class="bx bxl-linkedin"></i></a>
-                </div>
-            </div>
-        </div>
+<header class="menubar glass">
+  <div><span>🎓</span><b>Study Desk</b></div>
+  <div>
+    <button id="btn-search" aria-label="Search">🔍</button>
+    <button id="btn-theme" aria-label="Toggle dark mode">🌙</button>
+    <span id="clock"></span>
+  </div>
+</header>
+
+<main class="win glass" aria-label="Digital Study Desk">
+  <nav class="side" id="side" aria-label="Folders"></nav>
+  <section class="main">
+    <div class="tool">
+      <h2 id="title">All Apps</h2>
+      <div class="seg" role="group" aria-label="View">
+        <button id="v-grid" aria-label="Icon view" title="Icon view">▦</button>
+        <button id="v-list" aria-label="List view" title="List view">☰</button>
+      </div>
+      <label class="search"><input id="q" type="search" placeholder="Search apps" autocomplete="off" aria-label="Search apps"><kbd>⌘K</kbd></label>
     </div>
+    <div class="scroll" id="content"></div>
+  </section>
+</main>
 
-    <div class="ticker">
-        <marquee>
-            <span>NOTE :</span>
-            We Respect Education, Not Shortcuts &nbsp;&nbsp;|&nbsp;&nbsp; Check University Policies &nbsp;&nbsp;|&nbsp;&nbsp; Use Tools Responsibly &nbsp;&nbsp;|&nbsp;&nbsp; Learning &gt; Shortcuts
-        </marquee>
-    </div>
+<nav class="dock glass" id="dock" aria-label="Dock"></nav>
 
-    <div class="stats">
-        <div><b>7</b> categories</div>
-        <div><b>56</b> tools</div>
-        <div><b>Tap a drawer</b> to open its shelf</div>
-    </div>
+<aside class="toast glass" id="toast" role="status">
+  <span class="ic">📚</span>
+  <div><b>Learn first, shortcut never</b><p>Check your university's policies and use these tools responsibly.</p></div>
+  <button id="toast-x" aria-label="Dismiss">✕</button>
+</aside>
 
-    <ul class="uk-accordion-default" uk-accordion>
-        <li>
-            <a class="uk-accordion-title" href>
-                <span class="cat-icon"><i class="bx bxs-bot"></i></span>
-                <span class="cat-text">
-                    <span class="cat-name">Generative AI Tools</span>
-                    <span class="cat-count">8 tools</span>
-                </span>
-                <span uk-accordion-icon></span>
-            </a>
-            <div class="uk-accordion-content">
-                <!-- Swiper -->
-                <div class="swiper mySwiper1">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="https://chatgpt.com/" target="_blank"><i class="bx bx-message-square-dots"></i>ChatGPT</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://gemini.google.com/app" target="_blank"><i class="bx bx-message-square-dots"></i>Gemini</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://grok.com/" target="_blank"><i class="bx bx-message-square-dots"></i>Grok</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.perplexity.ai/" target="_blank"><i class="bx bx-message-square-dots"></i>Perplexity</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.blackbox.ai/" target="_blank"><i class="bx bx-message-square-dots"></i>BlackBox</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://dashboard.cohere.com/playground/chat" target="_blank"><i class="bx bx-message-square-dots"></i>Cohera</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://chatlyai.app/" target="_blank"><i class="bx bx-message-square-dots"></i>Chatly</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.notion.so/ai" target="_blank"><i class="bx bx-message-square-dots"></i>Notion AI</a>
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination tool1"></div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <a class="uk-accordion-title" href>
-                <span class="cat-icon"><i class="bx bxs-book-content"></i></span>
-                <span class="cat-text">
-                    <span class="cat-name">Online Dictionaries</span>
-                    <span class="cat-count">9 tools</span>
-                </span>
-                <span uk-accordion-icon></span>
-            </a>
-            <div class="uk-accordion-content">
-                <!-- Swiper -->
-                <div class="swiper mySwiper2">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="https://dictionary.cambridge.org/" target="_blank"><i class="bx bx-book-open"></i>Cambridge</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.merriam-webster.com/" target="_blank"><i class="bx bx-book-open"></i>Merriam-Webster</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.oxfordlearnersdictionaries.com/" target="_blank"><i class="bx bx-book-open"></i>Oxford</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://agarathi.com/" target="_blank"><i class="bx bx-book-open"></i>Agarathi</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.tamildict.com/english.php" target="_blank"><i class="bx bx-book-open"></i>TamilDict.com</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.maduraonline.com/" target="_blank"><i class="bx bx-book-open"></i>Madura</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://glosbe.com/" target="_blank"><i class="bx bx-book-open"></i>Glosbe</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.kapruka.com/dictionary/EnglishToSinhala.jsp" target="_blank"><i class="bx bx-book-open"></i>Kapruka</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.collinsdictionary.com/" target="_blank"><i class="bx bx-book-open"></i>Collins French</a>
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination tool2"></div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <a class="uk-accordion-title" href>
-                <span class="cat-icon"><i class="bx bxs-news"></i></span>
-                <span class="cat-text">
-                    <span class="cat-name">Article &amp; Magazine Tools</span>
-                    <span class="cat-count">9 tools</span>
-                </span>
-                <span uk-accordion-icon></span>
-            </a>
-            <div class="uk-accordion-content">
-                <!-- Swiper -->
-                <div class="swiper mySwiper3">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="https://www.britannica.com/" target="_blank"><i class="bx bx-news"></i>Encyclopædia Britannica</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.mendeley.com/" target="_blank"><i class="bx bx-news"></i>Mendeley</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://scholar.google.com/" target="_blank"><i class="bx bx-news"></i>Google Scholor</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://elicit.com/" target="_blank"><i class="bx bx-news"></i>Elicit</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://jenni.ai/?cmc_adid=ga_784716635253_23280535346&utm_group=188822413093&gad_campaignid=23280535346" target="_blank"><i class="bx bx-news"></i>Jenni AI</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.techopedia.com/" target="_blank"><i class="bx bx-news"></i>Techopedia</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.techlearning.com/" target="_blank"><i class="bx bx-news"></i>Tech &amp; Learning</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.techtarget.com/searchnetworking/" target="_blank"><i class="bx bx-news"></i>TechTarget</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://blog.cloudflare.com/search" target="_blank"><i class="bx bx-news"></i>Cloudflare</a>
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination tool3"></div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <a class="uk-accordion-title" href>
-                <span class="cat-icon"><i class="bx bxs-quote-alt-right"></i></span>
-                <span class="cat-text">
-                    <span class="cat-name">Paraphrase Tools</span>
-                    <span class="cat-count">8 tools</span>
-                </span>
-                <span uk-accordion-icon></span>
-            </a>
-            <div class="uk-accordion-content">
-                <!-- Swiper -->
-                <div class="swiper mySwiper4">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="https://stealthwriter.ai/" target="_blank"><i class="bx bx-repost"></i>Stealth Writer</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://quillbot.com/" target="_blank"><i class="bx bx-repost"></i>Quill Bot</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.paraphraser.io/" target="_blank"><i class="bx bx-repost"></i>Paraphraser</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.grammarly.com/paraphrasing-tool" target="_blank"><i class="bx bx-repost"></i>Grammerly</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://ahrefs.com/writing-tools/paraphrasing-tool" target="_blank"><i class="bx bx-repost"></i>Ahref Paraphrase</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.scribbr.com/paraphrasing-tool/" target="_blank"><i class="bx bx-repost"></i>Scribbr</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://spinbot.com/paraphrasing-tool" target="_blank"><i class="bx bx-repost"></i>Spin Bot</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.humanizeai.pro/" target="_blank"><i class="bx bx-repost"></i>Humanize AI</a>
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination tool4"></div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <a class="uk-accordion-title" href>
-                <span class="cat-icon"><i class="bx bxs-edit-alt"></i></span>
-                <span class="cat-text">
-                    <span class="cat-name">Editor Tools</span>
-                    <span class="cat-count">11 tools</span>
-                </span>
-                <span uk-accordion-icon></span>
-            </a>
-            <div class="uk-accordion-content">
-                <!-- Swiper -->
-                <div class="swiper mySwiper5">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="https://www.canva.com/" target="_blank"><i class="bx bx-edit"></i>Canva</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://dashboard.prowritingaid.com/" target="_blank"><i class="bx bx-edit"></i>ProWritingAid</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://docs.google.com/document/u/0/" target="_blank"><i class="bx bx-edit"></i>Google Docs</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://lucid.app/documents#/home?folder_id=recent" target="_blank"><i class="bx bx-edit"></i>Lucid</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://app.diagrams.net/" target="_blank"><i class="bx bx-edit"></i>Draw.io</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.mindmeister.com/app/home" target="_blank"><i class="bx bx-edit"></i>Mind Meister</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.ilovepdf.com/" target="_blank"><i class="bx bx-edit"></i>I-Love-PDF</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.sejda.com/" target="_blank"><i class="bx bx-edit"></i>Sejda</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://pdf.ai/documents" target="_blank"><i class="bx bx-edit"></i>PDF AI</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://app.humata.ai/" target="_blank"><i class="bx bx-edit"></i>Humata AI</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://gamma.com.ai/ai-powerpoint" target="_blank"><i class="bx bx-edit"></i>Gamma AI</a>
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination tool5"></div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <a class="uk-accordion-title" href>
-                <span class="cat-icon"><i class="bx bxs-shield-alt-2"></i></span>
-                <span class="cat-text">
-                    <span class="cat-name">Plagiarism Checker</span>
-                    <span class="cat-count">6 tools</span>
-                </span>
-                <span uk-accordion-icon></span>
-            </a>
-            <div class="uk-accordion-content">
-                <!-- Swiper -->
-                <div class="swiper mySwiper6">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="https://www.zerogpt.com/" target="_blank"><i class="bx bx-shield-quarter"></i>ZeroGPT</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://gptzero.me/plagiarism-checker" target="_blank"><i class="bx bx-shield-quarter"></i>GPT Zero</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.copyscape.com/" target="_blank"><i class="bx bx-shield-quarter"></i>Copyscape</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://chatgpt.com/g/g-ifP7V7mmC-plagiarism-checker" target="_blank"><i class="bx bx-shield-quarter"></i>ChatGPT PC</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://papersowl.com/free-plagiarism-checker" target="_blank"><i class="bx bx-shield-quarter"></i>PapersOwl</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://app.scribbr.com/plagiarism-checker" target="_blank"><i class="bx bx-shield-quarter"></i>Scribbr PC</a>
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination tool6"></div>
-                </div>
-            </div>
-        </li>
-        <li>
-            <a class="uk-accordion-title" href>
-                <span class="cat-icon"><i class="bx bxs-language"></i></span>
-                <span class="cat-text">
-                    <span class="cat-name">Script Convertor Tools</span>
-                    <span class="cat-count">5 tools</span>
-                </span>
-                <span uk-accordion-icon></span>
-            </a>
-            <div class="uk-accordion-content">
-                <!-- Swiper -->
-                <div class="swiper mySwiper7">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a href="https://translate.google.lk/?hl=en&vi=c&sl=en&tl=ta&op=translate" target="_blank"><i class="bx bx-globe"></i>Google Translator</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://sinhalaunicode.gishan.net/write" target="_blank"><i class="bx bx-globe"></i>Sinhala Unicode</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://www.easytamiltyping.com/" target="_blank"><i class="bx bx-globe"></i>Easy Tamil Typing</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://ucsc.cmb.ac.lk/ltrl/services/feconverter/" target="_blank"><i class="bx bx-globe"></i>Unicode - Tamil Convertor</a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="https://trackerdisk.com/calculators/conversions/numbers-to-sinhala-words" target="_blank"><i class="bx bx-globe"></i>TrackerDisk</a>
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination tool7"></div>
-                </div>
-            </div>
-        </li>
-    </ul>
+<dialog id="about">
+  <img class="av" src="Profile.jpg" alt="Profile photo" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'ST'}))">
+  <h3>Sivakumar Thanushkar</h3>
+  <p class="role">Builder of this desk</p>
+  <div class="links">
+    <a href="mailto:mrkthanuts@gmail.com">📧 Email</a>
+    <a href="https://github.com/ThanushkarSiva1238" target="_blank" rel="noopener">🐙 GitHub</a>
+    <a href="https://www.linkedin.com/in/thanushkarsivakumar/" target="_blank" rel="noopener">💼 LinkedIn</a>
+  </div>
+  <button class="close" id="about-x">Done</button>
+</dialog>
 
-    <footer class="site-footer">
-        <p>Digital Study Desk — <span>Learning &gt; Shortcuts.</span></p>
-    </footer>
-
-</body>
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-
-<!-- Import JS -->
 <script src="index.js"></script>
-
+</body>
 </html>
