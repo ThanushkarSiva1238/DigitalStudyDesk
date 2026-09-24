@@ -2,43 +2,77 @@
 // Each app: [name, url, emoji icon]
 const CATS = [
   { id: 'ai', name: 'Generative AI', icon: '✨', a: '#A78BFA', b: '#5A4FE0', apps: [
-    ['ChatGPT', 'https://chatgpt.com/', '💬'], ['Gemini', 'https://gemini.google.com/app', '♊'],
-    ['Grok', 'https://grok.com/', '⚡'], ['Perplexity', 'https://www.perplexity.ai/', '🔭'],
-    ['BlackBox', 'https://www.blackbox.ai/', '⬛'], ['Cohere', 'https://dashboard.cohere.com/playground/chat', '🧠'],
-    ['Chatly', 'https://chatlyai.app/', '🗨️'], ['Notion AI', 'https://www.notion.so/ai', '📓'] ] },
+    ['ChatGPT', 'https://chatgpt.com/', '💬'],
+    ['Claude', 'https://claude.ai/new', '💥'],
+    ['Gemini', 'https://gemini.google.com/app', '♊'],
+    ['Grok', 'https://grok.com/', '⚡'], 
+    ['Perplexity', 'https://www.perplexity.ai/', '🔭'],
+    ['BlackBox', 'https://www.blackbox.ai/', '⬛'], 
+    ['Cohere', 'https://dashboard.cohere.com/playground/chat', '🧠'],
+    ['Chatly', 'https://chatlyai.app/', '🗨️'], 
+    ['Notion AI', 'https://www.notion.so/ai', '📓'] ] 
+  },
   { id: 'dict', name: 'Dictionaries', icon: '📖', a: '#FFB25A', b: '#F0622D', apps: [
-    ['Cambridge', 'https://dictionary.cambridge.org/', '🎓'], ['Merriam-Webster', 'https://www.merriam-webster.com/', '📖'],
-    ['Oxford', 'https://www.oxfordlearnersdictionaries.com/', '🏛️'], ['Agarathi', 'https://agarathi.com/', '📚'],
-    ['TamilDict', 'https://www.tamildict.com/english.php', '🔤'], ['Madura', 'https://www.maduraonline.com/', '🌺'],
-    ['Glosbe', 'https://glosbe.com/', '🌍'], ['Kapruka', 'https://www.kapruka.com/dictionary/EnglishToSinhala.jsp', '🥥'],
-    ['Collins French', 'https://www.collinsdictionary.com/', '🥐'] ] },
+    ['Cambridge', 'https://dictionary.cambridge.org/', '🎓'], 
+    ['Merriam-Webster', 'https://www.merriam-webster.com/', '📖'],
+    ['Oxford', 'https://www.oxfordlearnersdictionaries.com/', '🏛️'], 
+    ['Agarathi', 'https://agarathi.com/', '📚'],
+    ['TamilDict', 'https://www.tamildict.com/english.php', '🔤'], 
+    ['Madura', 'https://www.maduraonline.com/', '🌺'],
+    ['Glosbe', 'https://glosbe.com/', '🌍'], 
+    ['Kapruka', 'https://www.kapruka.com/dictionary/EnglishToSinhala.jsp', '🥥'],
+    ['Collins French', 'https://www.collinsdictionary.com/', '🥐'] ] 
+  },
   { id: 'article', name: 'Articles & Research', icon: '📰', a: '#FF7A88', b: '#D9263C', apps: [
-    ['Britannica', 'https://www.britannica.com/', '🏺'], ['Mendeley', 'https://www.mendeley.com/', '🗂️'],
-    ['Google Scholar', 'https://scholar.google.com/', '🔬'], ['Elicit', 'https://elicit.com/', '🧪'],
-    ['Jenni AI', 'https://jenni.ai/', '🖋️'], ['Techopedia', 'https://www.techopedia.com/', '💻'],
-    ['Tech & Learning', 'https://www.techlearning.com/', '🧑‍🏫'], ['TechTarget', 'https://www.techtarget.com/searchnetworking/', '🎯'],
-    ['Cloudflare Blog', 'https://blog.cloudflare.com/search', '☁️'] ] },
+    ['Britannica', 'https://www.britannica.com/', '🏺'], 
+    ['Mendeley', 'https://www.mendeley.com/', '🗂️'],
+    ['Google Scholar', 'https://scholar.google.com/', '🔬'], 
+    ['Elicit', 'https://elicit.com/', '🧪'],
+    ['Jenni AI', 'https://jenni.ai/', '🖋️'], 
+    ['Techopedia', 'https://www.techopedia.com/', '💻'],
+    ['Tech & Learning', 'https://www.techlearning.com/', '🧑‍🏫'], 
+    ['TechTarget', 'https://www.techtarget.com/searchnetworking/', '🎯'],
+    ['Cloudflare Blog', 'https://blog.cloudflare.com/search', '☁️'] ] 
+  },
   { id: 'para', name: 'Paraphrasing', icon: '🔁', a: '#4FD8C4', b: '#0C9AA0', apps: [
-    ['Stealth Writer', 'https://stealthwriter.ai/', '🥷'], ['QuillBot', 'https://quillbot.com/', '🪶'],
-    ['Paraphraser', 'https://www.paraphraser.io/', '🔁'], ['Grammarly', 'https://www.grammarly.com/paraphrasing-tool', '✅'],
-    ['Ahrefs', 'https://ahrefs.com/writing-tools/paraphrasing-tool', '📈'], ['Scribbr', 'https://www.scribbr.com/paraphrasing-tool/', '📝'],
-    ['SpinBot', 'https://spinbot.com/paraphrasing-tool', '🌀'], ['Humanize AI', 'https://www.humanizeai.pro/', '🧑'] ] },
+    ['Stealth Writer', 'https://stealthwriter.ai/', '🥷'], 
+    ['QuillBot', 'https://quillbot.com/', '🪶'],
+    ['Paraphraser', 'https://www.paraphraser.io/', '🔁'], 
+    ['Grammarly', 'https://www.grammarly.com/paraphrasing-tool', '✅'],
+    ['Ahrefs', 'https://ahrefs.com/writing-tools/paraphrasing-tool', '📈'], 
+    ['Scribbr', 'https://www.scribbr.com/paraphrasing-tool/', '📝'],
+    ['SpinBot', 'https://spinbot.com/paraphrasing-tool', '🌀'], 
+    ['Humanize AI', 'https://www.humanizeai.pro/', '🧑'] ] 
+  },
   { id: 'editor', name: 'Editing & Design', icon: '✏️', a: '#5DB4FF', b: '#0A6CE0', apps: [
-    ['Canva', 'https://www.canva.com/', '🎨'], ['ProWritingAid', 'https://dashboard.prowritingaid.com/', '🧐'],
-    ['Google Docs', 'https://docs.google.com/document/u/0/', '📄'], ['Lucid', 'https://lucid.app/documents#/home?folder_id=recent', '💡'],
-    ['Draw.io', 'https://app.diagrams.net/', '📐'], ['MindMeister', 'https://www.mindmeister.com/app/home', '🧩'],
-    ['iLovePDF', 'https://www.ilovepdf.com/', '💗'], ['Sejda', 'https://www.sejda.com/', '📎'],
-    ['PDF AI', 'https://pdf.ai/documents', '🤖'], ['Humata', 'https://app.humata.ai/', '🔮'],
-    ['Gamma', 'https://gamma.com.ai/ai-powerpoint', '🪄'] ] },
+    ['Canva', 'https://www.canva.com/', '🎨'], 
+    ['ProWritingAid', 'https://dashboard.prowritingaid.com/', '🧐'],
+    ['Google Docs', 'https://docs.google.com/document/u/0/', '📄'], 
+    ['Lucid', 'https://lucid.app/documents#/home?folder_id=recent', '💡'],
+    ['Draw.io', 'https://app.diagrams.net/', '📐'], 
+    ['MindMeister', 'https://www.mindmeister.com/app/home', '🧩'],
+    ['iLovePDF', 'https://www.ilovepdf.com/', '💗'], 
+    ['Sejda', 'https://www.sejda.com/', '📎'],
+    ['PDF AI', 'https://pdf.ai/documents', '🤖'], 
+    ['Humata', 'https://app.humata.ai/', '🔮'],
+    ['Gamma', 'https://gamma.com.ai/ai-powerpoint', '🪄'] ] 
+  },
   { id: 'plag', name: 'Plagiarism Check', icon: '🛡️', a: '#9A9AA3', b: '#4A4A52', apps: [
-    ['ZeroGPT', 'https://www.zerogpt.com/', '🎯'], ['GPTZero', 'https://gptzero.me/plagiarism-checker', '🕵️'],
-    ['Copyscape', 'https://www.copyscape.com/', '🔍'], ['ChatGPT Checker', 'https://chatgpt.com/g/g-ifP7V7mmC-plagiarism-checker', '🛡️'],
-    ['PapersOwl', 'https://papersowl.com/free-plagiarism-checker', '🦉'], ['Scribbr Checker', 'https://app.scribbr.com/plagiarism-checker', '📋'] ] },
+    ['ZeroGPT', 'https://www.zerogpt.com/', '🎯'], 
+    ['GPTZero', 'https://gptzero.me/plagiarism-checker', '🕵️'],
+    ['Copyscape', 'https://www.copyscape.com/', '🔍'], 
+    ['ChatGPT Checker', 'https://chatgpt.com/g/g-ifP7V7mmC-plagiarism-checker', '🛡️'],
+    ['PapersOwl', 'https://papersowl.com/free-plagiarism-checker', '🦉'], 
+    ['Scribbr Checker', 'https://app.scribbr.com/plagiarism-checker', '📋'] ] 
+  },
   { id: 'script', name: 'Script Converters', icon: '🔤', a: '#4ADE9B', b: '#0A9A68', apps: [
+    ['Unicode ⇄ Bamini', 'https://thanushkarsiva1238.github.io/Unicode-Bamini-Converter/', '♾️'],
     ['Google Translate', 'https://translate.google.lk/?hl=en&vi=c&sl=en&tl=ta&op=translate', '🌐'],
-    ['Sinhala Unicode', 'https://sinhalaunicode.gishan.net/write', '🔡'], ['Easy Tamil Typing', 'https://www.easytamiltyping.com/', '⌨️'],
+    ['Sinhala Unicode', 'https://sinhalaunicode.gishan.net/write', '🔡'], 
+    ['Easy Tamil Typing', 'https://www.easytamiltyping.com/', '⌨️'],
     ['Unicode ⇄ Tamil', 'https://ucsc.cmb.ac.lk/ltrl/services/feconverter/', '🔄'],
-    ['TrackerDisk', 'https://trackerdisk.com/calculators/conversions/numbers-to-sinhala-words', '🔢'] ] }
+    ['TrackerDisk', 'https://trackerdisk.com/calculators/conversions/numbers-to-sinhala-words', '🔢'] ] 
+  }
 ];
 
 const $ = (s) => document.querySelector(s);
