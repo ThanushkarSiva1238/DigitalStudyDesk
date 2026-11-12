@@ -68,6 +68,7 @@ const CATS = [
   { id: 'script', name: 'Script Converters', icon: '🔤', a: '#4ADE9B', b: '#0A9A68', apps: [
     ['Tamil Converter', 'https://thanushkarsiva1238.github.io/Tamil-Converter/', '♾️'],
     ['Google Translate', 'https://translate.google.lk/?hl=en&vi=c&sl=en&tl=ta&op=translate', '🌐'],
+    ['DeepL', 'https://www.deepl.com/en/translator', '🎗️'],
     ['Sinhala Unicode', 'https://sinhalaunicode.gishan.net/write', '🔡'], 
     ['Easy Tamil Typing', 'https://www.easytamiltyping.com/', '⌨️'],
     ['Unicode ⇄ Tamil', 'https://ucsc.cmb.ac.lk/ltrl/services/feconverter/', '🔄'],
